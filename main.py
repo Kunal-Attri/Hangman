@@ -45,13 +45,12 @@ def draw_window():
     global guessed
     global hangmanPics
     global limbs
-    win.fill(GREEN)
 
+    win.fill(GREEN)
     for i in range(len(buttons)):
         if buttons[i][4]:
             pygame.draw.circle(win, BLACK, (buttons[i][1], buttons[i][2]), buttons[i][3])
-            pygame.draw.circle(win, buttons[i][0], (buttons[i][1], buttons[i][2]), buttons[i][3] - 2
-                               )
+            pygame.draw.circle(win, buttons[i][0], (buttons[i][1], buttons[i][2]), buttons[i][3] - 2)
             label = btn_font.render(chr(buttons[i][5]), 1, BLACK)
             win.blit(label, (buttons[i][1] - (label.get_width() / 2), buttons[i][2] - (label.get_height() / 2)))
 
@@ -60,19 +59,16 @@ def draw_window():
     rect = label1.get_rect()
     length = rect[2]
     
-    win.blit(label1,(winWidth/2 - length/2, 400))
+    win.blit(label1,(winWidth / 2 - length / 2, 400))
 
     pic = hangmanPics[limbs]
-    win.blit(pic, (winWidth/2 - pic.get_width()/2 + 20, 150))
+    win.blit(pic, (winWidth / 2 - pic.get_width() / 2 + 20, 150))
     pygame.display.update()
 
 
 def hang(guess):
     global word
-    if guess.lower() not in word.lower():
-        return True
-    else:
-        return False
+    return guess.lower() not in word.lower()
 
 
 def spacedOut(word, guessed=[]):
@@ -105,6 +101,7 @@ def end(winner=False):
     global limbs
     lostTxt = 'You Lost, press any key to play again...'
     winTxt = 'WINNER!, press any key to play again...'
+
     draw_window()
     pygame.time.delay(1000)
     win.fill(GREEN)
@@ -117,8 +114,8 @@ def end(winner=False):
     wordTxt = lost_font.render(word.upper(), 1, BLACK)
     wordWas = lost_font.render('The phrase was: ', 1, BLACK)
 
-    win.blit(wordTxt, (winWidth/2 - wordTxt.get_width()/2, 295))
-    win.blit(wordWas, (winWidth/2 - wordWas.get_width()/2, 245))
+    win.blit(wordTxt, (winWidth / 2 - wordTxt.get_width() / 2, 295))
+    win.blit(wordWas, (winWidth / 2 - wordWas.get_width() / 2, 245))
     win.blit(label, (winWidth / 2 - label.get_width() / 2, 140))
     pygame.display.update()
     again = True
